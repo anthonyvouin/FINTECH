@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Contact() {
 
@@ -15,20 +15,6 @@ export default function Contact() {
     }).then(data => data.json())
   }
   
-  //useEffect(() => {
-  //  return fetch(`http://localhost:8245/instrument`, {
-  //    method: 'POST',
-  //    headers: { 'Content-Type': 'application/json' },
-  //    body: JSON.stringify({
-  //      nom: nom,
-  //      prenom: prenom,
-  //      mail: mail,
-  //      message: message,
-  //   })
-  //  }).then(data => data.json())
-  //}, []);
-
-  const [returnMessage, setReturnMessage] = useState('');
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
   const [mail, setMail] = useState('');
