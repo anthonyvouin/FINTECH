@@ -7,6 +7,10 @@ import mongoose from "mongoose";
 const app = express();
 const port = 3000;
 
+app.listen(port, () => {
+  console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
+});
+
 app.use(bodyParser.json());
 
 app.use(
@@ -41,7 +45,8 @@ mongoose
     console.log("Error connecting to MongoDB database: ", error);
   });
 
-// Création d'un modèle Mongoose pour les contacts
+
+// Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
   nom: { type: String, required: true },
   prenom: { type: String, required: true },
@@ -77,6 +82,4 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
-});
+
