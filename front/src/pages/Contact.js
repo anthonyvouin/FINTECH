@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 export default function Contact() {
 
-  function sendContactForm(nom, prenom, mail, message) {
+  function sendContactForm(nom, prenom, email, message) {
     return fetch(`http://localhost:3000/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nom: nom,
           prenom: prenom,
-          email: mail,
+          email: email,
           message: message,
        })
     }).then(data => data.json())
