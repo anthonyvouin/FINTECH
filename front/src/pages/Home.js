@@ -11,6 +11,7 @@ export default function Home() {
 
   return (
     <>
+      
     <section className="py-24 flex items-center min-h-screen justify-center bg-white">
       <div className="mx-auto max-w-[43rem]">
         <div className="text-center">
@@ -31,9 +32,7 @@ export default function Home() {
       </div>
     </section>
 
-    <div ref={ref}>
-      Coding Beauty
-    </div>
+
     </>
   )
 }
