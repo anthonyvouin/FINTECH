@@ -50,9 +50,19 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendContactForm(nom, prenom, mail, message).then(data => {
-      setReturnMessage(data.message);
-    });
+
+    try {
+      sendContactForm(nom, prenom, mail, message);
+      alert("bravo c'est envoyé");
+
+      setNom("");
+      setPrenom("");
+      setMail("");
+      setMessage("");
+    } catch (error) {
+      alert("problème durant l'envoi du formulaire");
+    }
+
   }
 
   return (
