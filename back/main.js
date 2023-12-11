@@ -1,19 +1,20 @@
 // index.js
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
 
 const app = express();
-const port = 3000; // Vous pouvez utiliser n'importe quel port que vous préférez
+const port = 3000;
 
-// Middleware pour traiter le corps des requêtes au format JSON
+// Middleware body-parser pour traiter les données JSON
 app.use(bodyParser.json());
 
-// Route de test
-app.get("/", (req, res) => {
-  res.send("Bienvenue sur votre serveur Express !");
+// Route POST pour traiter les données JSON
+app.post("/api/data", (req, res) => {
+  const jsonData = req.body;
+  console.log("Données reçues :", jsonData);
+  res.json({ message: "Données reçues avec succès" });
 });
 
-// Démarrer le serveur
 app.listen(port, () => {
   console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
 });
