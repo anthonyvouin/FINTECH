@@ -55,7 +55,7 @@ export default function Contact() {
     <section className="bg-white">
       <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900">
-          Contactez-nous
+          Contactez-nous !
         </h2>
         <form action="#" className="space-y-8" onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-4">
