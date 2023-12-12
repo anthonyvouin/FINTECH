@@ -1,84 +1,92 @@
-import Cours_des_actifs from '../media/Cours_des_actifs.png';
-import Graphiques_analyses_techniques from '../media/Cours_des_actifs.png';
-import Indicateurs_performance from '../media/Cours_des_actifs.png';
-import Portefeuille from '../media/Cours_des_actifs.png';
-import Actualités_financières from '../media/Cours_des_actifs.png';
-import Ordres_en_cours from '../media/Cours_des_actifs.png';
-import Historique_transactions from '../media/Cours_des_actifs.png';
-import Niveaux_support_résistance from '../media/Cours_des_actifs.png';
+import Profil_utilisateur from '../media/Profil_utilisateur.png';
+import Ergonomie from '../media/Ergonomie.png';
+import Graphiques_analyses_techniques from '../media/Graphiques_analyses_techniques.png';
+import Accessibilité from '../media/Accessibilité.png';
+import Actualités_financières from '../media/Actualités_financières.png';
+import Communaute_Trading from '../media/Communaute_Trading.png';
+import Navigation from '../media/Navigation.png';
 
 
 export const questions = [
   {
     id:0, 
-    image: Cours_des_actifs, 
-    title: "Cours des actifs", 
+    image: Profil_utilisateur, 
+    title: "Profil utilisateur", 
     questions: {
-        q1: "Comment interprétez-vous les chiffres associés à chaque actif?",
-        q2: "Pouvez-vous identifier l'actif dont le cours est actuellement le plus élevé et le plus bas?"
+        q1: "Combien de temps seriez vous prêt à accorder par jour au trading ?",
+        q2: "À quelle fréquence consultez-vous le tableau de bord de votre site de trading ? (tous les jours, parfois, jamais)"
     }
   },
   {
     id:1, 
-    image: Graphiques_analyses_techniques, 
-    title: "Graphiques et analyses techniques", 
+    image: Ergonomie, 
+    title: "Ergonomie", 
     questions: {
-        q1: "Comment regardez-vous les graphiques pour prendre des décisions en trading?",
-        q2: "Avez-vous des difficultés à repérer les points d'entrée ou de sortie?"
+        q1: "référez-vous des représentations visuelles simples ou des analyses plus détaillées sur le tableau de bord ?",
+        q2: "Avez-vous des préférences en termes de disposition des informations sur l'écran ?"
     }
   },
   {
     id:2, 
-    image: Indicateurs_performance, 
-    title: "Indicateurs de performance", 
+    image: Ergonomie, 
+    title: "Ergonomie", 
     questions: {
-        q1: "Quels indicateurs utilisez-vous pour évaluer la réussite de votre portefeuille?",
-        q2: "Pouvez-vous expliquer ce que signifient ces pourcentages et chiffres?"
+        q1: "Dans quelle mesure la possibilité de consulter l'historique de vos transactions est-elle importante pour vous ?",
+        q2: "Est il pertinent que les informations soient de tailles différentes plutôt qu’uniforme afin de s’implifier la lecture des informations ?"
     }
   },
   {
     id:3, 
-    image: Portefeuille, 
-    title: "Portefeuille", 
+    image: Graphiques_analyses_techniques, 
+    title: "Graphiques et analyses techniques", 
     questions: {
-        q1: "Pouvez-vous voir la performance globale de votre portefeuille?",
-        q2: "Identifiez-vous les actifs qui contribuent le plus aux gains ou aux pertes?"
+        q1: "Quelles informations trouvez-vous les plus utiles sur le tableau de bord ?",
+        q2: "Trouvez-vous utile la possibilité de comparer rapidement différents actifs financiers sur le tableau de bord ?"
     }
   },
   {
     id:4, 
     image: Actualités_financières, 
-    title: "Actualités financières", 
+    title: "Graphiques et analyses techniques", 
     questions: {
-        q1: "Comment les actualités influencent-elles vos décisions de trading?",
-        q2: "Pouvez-vous repérer des événements récents qui ont eu un impact sur le marché?"
+        q1: "Préférez-vous des graphiques, des rapports textuels ou une combinaison des deux ?",
+        q2: "Seriez-vous intéressé par des outils interactifs sur le tableau de bord permettant d'explorer et d'analyser des données historiques pour prendre des décisions plus éclairées ?"
     }
   },
   {
     id:5, 
-    image: Ordres_en_cours, 
-    title: "Ordres en cours", 
+    image: Accessibilité, 
+    title: "Accessibilité", 
     questions: {
-        q1: "Pouvez-vous voir quels ordres sont en attente d'exécution?",
-        q2: "Comment ajustez-vous vos ordres en fonction des changements du marché?"
+        q1: "Pouvez vous citez les couleurs qui s’affichent sur l’image ?",
+        q2: "Y a-t-il des fonctionnalités spécifiques que vous aimeriez pouvoir ajuster selon vos préférences ? Notamment au niveau des couleurs utilisées pour la conception d’un tableau de bord ?"
     }
   },
   {
     id:6, 
-    image: Historique_transactions, 
-    title: "Historique des transactions", 
+    image: Actualités_financières, 
+    title: "Actualités financières", 
     questions: {
-        q1: "Que pouvez-vous apprendre de vos transactions passées?",
-        q2: "Avez-vous des difficultés à identifier les opérations les plus rentables?"
+        q1: "Trouveriez vous utile un bandeau d’informations lié à l’actualité financière ?",
+        q2: "Préféreriez-vous recevoir des alertes interactives sur votre tableau de bord pour vous informer des opportunités de trading ou des changements importants sur le marché ?"
     }
   },
   {
     id:7, 
-    image: Niveaux_support_résistance, 
-    title: "Niveaux de support et de résistance", 
+    image: Communaute_Trading, 
+    title: "Communauté Trading", 
     questions: {
-        q1: "Comment utilisez-vous les niveaux de support et de résistance dans vos décisions?",
-        q2: "Pouvez-vous repérer des tendances importantes sur le graphique liées à ces niveaux?"
+        q1: "Apprécieriez-vous un chat en direct directement intégré sur votre tableau de bord pour discuter avec d'autres traders ou obtenir une assistance instantanée?",
+        q2: "Avez-vous l'habitude de suivre d'autres traders sur la plateforme?"
+    }
+  },
+  {
+    id:8, 
+    image: Navigation, 
+    title: "Navigation", 
+    questions: {
+        q1: "Seriez-vous intéressé par des guides visuels ou des tutoriels intégrés pour vous aider à comprendre les fonctionnalités du tableau de bord ?",
+        q2: "Trouvez-vous utile la possibilité de comparer rapidement différents actifs financiers sur le tableau de bord?"
     }
   }
 ];
