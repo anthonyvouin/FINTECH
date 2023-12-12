@@ -25,8 +25,8 @@ const Questions = (props) => {
         try {
             sendQuestionForm({
                 "reponses": [
-                  { questionId: props.question.questions.q1, reponse:q1 },
-                  { questionId: props.question.questions.q2, reponse:q2 }
+                  { question: props.question.questions.q1, reponse:q1 },
+                  { question: props.question.questions.q2, reponse:q2 }
                 ]}
             );
             alert("merci pour vos réponses");
@@ -55,23 +55,23 @@ const Questions = (props) => {
         }`}>
             <h1 className="max-w-2xl mb-4 text-xl font-extrabold leading-none ">{ props.question.title }</h1>
             <form action="#" className="" onSubmit={handleSubmit}>
-                <div class="">
+                <div className="">
                     <div className="mb-5">
-                        <label for="q1" class="block mb-2 text-sm font-medium text-gray-900">{ props.question.questions.q1 }</label>
+                        <label htmlFor="q1" className="block mb-2 text-sm font-medium text-gray-900">{ props.question.questions.q1 }</label>
                         <input type="text" id="q1" placeholder="Reponse" onChange={handleChangeQ1} required value={q1}
-                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                         />
                     </div>
                     <div className="mb-5">
-                        <label for="q2" class="block mb-2 text-sm font-medium text-gray-900">{ props.question.questions.q2 }</label>
+                        <label htmlFor="q2" className="block mb-2 text-sm font-medium text-gray-900">{ props.question.questions.q2 }</label>
                         <input type="text" id="q2" placeholder="Reponse" onChange={handleChangeQ2} required value={q2}
-                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
                         />
                     </div>
                 </div>
 
                 <button type="submit"
-                        class="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
                     Envoyer
                 </button>
