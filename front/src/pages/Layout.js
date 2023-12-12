@@ -15,7 +15,7 @@ const Layout = () => {
             to="/"
             className="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2"
           >
-            Home
+            Accueil
           </Link>
           <Link
             to="/contact"
