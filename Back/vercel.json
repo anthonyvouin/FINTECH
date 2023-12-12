@@ -3,24 +3,13 @@
     "builds": [
         {
             "src": "main.js",
-            "use": "@vercel/node",
-            "config": {
-                "maxDuration": 30 
-            }
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
-            "src": "/api/contact",
-            "dest": "main.js"
-        },
-        {
-            "src": "/api/reponse",
-            "dest": "main.js"
-        },
-        {
             "src": "/(.*)",
-            "dest": "main.js"
+            "dest": "/main.js"
         }
     ]
 }
