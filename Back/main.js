@@ -60,7 +60,7 @@ const ContactSchema = new mongoose.Schema({
 const Contact = mongoose.model("Contact", ContactSchema);
 
 // Route POST pour le formulaire de contact
-app.post("/api/contact", async (req, res) => {
+app.post("https://fintech-api.vercel.app/api/contact", async (req, res) => {
   try {
     const { nom, prenom, email, message } = req.body;
 
@@ -93,7 +93,7 @@ const ReponseSchema = new mongoose.Schema({
 const Reponse = mongoose.model("Reponse", ReponseSchema);
 
 // Route POST pour les réponses aux questions
-app.post("/api/reponse", async (req, res) => {
+app.post("https://fintech-api.vercel.app/api/reponse", async (req, res) => {
   try {
     const { reponses } = req.body;
 
