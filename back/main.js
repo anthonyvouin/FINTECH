@@ -82,10 +82,12 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+
+
 // Modele big Form
 const ReponseSchema = new mongoose.Schema({
   reponses: [
-    { questionId: String, reponse: String }
+    { question: String, reponse: String }
   ],
 });
 
