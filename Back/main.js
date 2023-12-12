@@ -5,8 +5,9 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 const app = express();
-const port =  3000;
+const port = 3000;
 
+const baseURL = "https://fintech-api.vercel.app";
 
 app.listen(port, () => {
   console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
@@ -24,7 +25,7 @@ app.use(
 
 mongoose
   .connect(
- "mongodb+srv://root:root@cluster0.whvvfkh.mongodb.net/?retryWrites=true&w=majority",
+    "YOUR_NEW_MONGODB_CONNECTION_STRING", // Update this with the correct connection string
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -50,8 +51,6 @@ mongoose
     console.log("Error connecting to MongoDB Atlas: ", error);
   });
 
-
-
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
   nom: { type: String, required: true },
@@ -63,7 +62,7 @@ const ContactSchema = new mongoose.Schema({
 const Contact = mongoose.model("Contact", ContactSchema);
 
 // Route POST pour le formulaire de contact
-app.post("/api/contact", async (req, res) => {
+app.post(`${baseURL}/api/contact`, async (req, res) => {
   try {
     const { nom, prenom, email, message } = req.body;
 
@@ -88,8 +87,6 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-
-
 // Modele big Form
 const ReponseSchema = new mongoose.Schema({
   reponses: [{ question: String, reponse: String }],
@@ -98,7 +95,7 @@ const ReponseSchema = new mongoose.Schema({
 const Reponse = mongoose.model("Reponse", ReponseSchema);
 
 // Route POST pour les réponses aux questions
-app.post("/api/reponse", async (req, res) => {
+app.post(`${baseURL}/api/reponse`, async (req, res) => {
   try {
     const { reponses } = req.body;
 
@@ -120,4 +117,3 @@ app.post("/api/reponse", async (req, res) => {
       .json({ error: "Erreur lors de l'enregistrement des réponses" });
   }
 });
- 
