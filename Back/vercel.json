@@ -9,11 +9,11 @@
     "routes": [
         {
             "src": "/api/contact",
-            "dest": "/api/contact"
+            "dest": "main.js"
         },
         {
             "src": "/api/reponse",
-            "dest": "/api/reponse"
+            "dest": "main.js"
         },
         {
             "src": "/(.*)",
