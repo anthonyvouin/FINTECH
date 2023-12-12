@@ -28,8 +28,8 @@ const Questions = (props) => {
         try {
             sendQuestionForm(props.question.title, 
                 {
-                0: {question: props.question.questions.q1, reponse:q1},
-                1: {question: props.question.questions.q2, reponse:q2},
+                0: {questionId: props.question.questions.q1, reponse:q1},
+                1: {questionId: props.question.questions.q2, reponse:q2},
                 });
             alert("merci pout vos réponses");
 
