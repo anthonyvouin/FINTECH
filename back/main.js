@@ -22,15 +22,19 @@ app.use(
 );
 
 mongoose
-  .connect("mongodb://localhost:27017/fintech", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+ "mongodb+srv://root:root@cluster0.whvvfkh.mongodb.net/?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      retryWrites: true,
+    }
+  )
   .then(() => {
-    console.log("Connected to MongoDB database");
+    console.log("Connected to MongoDB Atlas");
 
     mongoose.connection.on("connected", () => {
-      console.log("Mongoose connection is open to MongoDB");
+      console.log("Mongoose connection is open to MongoDB Atlas");
     });
 
     mongoose.connection.on("error", (err) => {
@@ -42,9 +46,8 @@ mongoose
     });
   })
   .catch((error) => {
-    console.log("Error connecting to MongoDB database: ", error);
+    console.log("Error connecting to MongoDB Atlas: ", error);
   });
-
 
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
@@ -82,13 +85,9 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-
-
 // Modele big Form
 const ReponseSchema = new mongoose.Schema({
-  reponses: [
-    { question: String, reponse: String }
-  ],
+  reponses: [{ question: String, reponse: String }],
 });
 
 const Reponse = mongoose.model("Reponse", ReponseSchema);
