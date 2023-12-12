@@ -49,6 +49,8 @@ mongoose
     console.log("Error connecting to MongoDB Atlas: ", error);
   });
 
+
+
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
   nom: { type: String, required: true },
@@ -84,6 +86,8 @@ app.post("/api/contact", async (req, res) => {
       .json({ error: "Erreur lors de l'enregistrement du contact" });
   }
 });
+
+
 
 // Modele big Form
 const ReponseSchema = new mongoose.Schema({
