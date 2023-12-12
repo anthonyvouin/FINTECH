@@ -82,10 +82,8 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-
 // Modele big Form
 const ReponseSchema = new mongoose.Schema({
-  email: { type: String, required: true },
   reponses: [
     { questionId: String, reponse: String }
   ],
@@ -96,10 +94,9 @@ const Reponse = mongoose.model("Reponse", ReponseSchema);
 // Route POST pour les réponses aux questions
 app.post("/api/reponse", async (req, res) => {
   try {
-    const { email, reponses } = req.body;
+    const { reponses } = req.body;
 
     const newReponse = new Reponse({
-      email,
       reponses,
     });
 
