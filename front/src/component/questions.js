@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Questions = (props) => {
     function sendQuestionForm(title, questions) {
-        return fetch(`http://localhost:3000/api/question`, {
+        return fetch(`http://localhost:3000/api/reponse`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
