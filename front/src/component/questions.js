@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 
 const Questions = (props) => {
-    function sendQuestionForm(title, questions) {
+    function sendQuestionForm(questions) {
         return fetch(`http://localhost:3000/api/reponse`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                title: title,
-                questions: questions,
-            })
+            body: JSON.stringify(questions)
         }).then(data => data.json())
     }
 
@@ -26,12 +23,13 @@ const Questions = (props) => {
         e.preventDefault();
 
         try {
-            sendQuestionForm(props.question.title, 
-                {
-                0: {questionId: props.question.questions.q1, reponse:q1},
-                1: {questionId: props.question.questions.q2, reponse:q2},
-                });
-            alert("merci pout vos réponses");
+            sendQuestionForm({
+                "reponses": [
+                  { questionId: props.question.questions.q1, reponse:q1 },
+                  { questionId: props.question.questions.q2, reponse:q2 }
+                ]}
+            );
+            alert("merci pour vos réponses");
 
             setQ1("");
             setQ2("");
