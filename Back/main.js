@@ -5,7 +5,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 const app = express();
-const port = 3000;
+const port =  3000;
+
 
 app.listen(port, () => {
   console.log(`Le serveur est en cours d'exécution sur le port ${port}`);
