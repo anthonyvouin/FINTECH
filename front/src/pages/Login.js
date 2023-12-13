@@ -14,8 +14,8 @@ export default function Login() {
        })
     }).then(data => {
       console.log(data);
-      
-      if(data.json().message === "Identifiants incorrects coté back") {
+
+      if(data.ok) {
         localStorage.setItem("username", username);
         localStorage.setItem("password", password);
         localStorage.setItem("user_connect", true); 
