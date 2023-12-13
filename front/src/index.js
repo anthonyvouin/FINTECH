@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 
@@ -10,6 +10,8 @@ import Admin from "./pages/Admin";
 import NoPage from "./pages/NoPage";
 
 export default function App() {
+  const userConnected = localStorage.getItem("user_connect") === "true";
+
   return (
     <BrowserRouter>
       <Routes>
@@ -17,7 +19,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Login />} />
-          <Route path="admin" element={<Admin />} />
+          {userConnected ? <Route path="admin" element={<Admin />} /> : null}
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
@@ -25,5 +27,5 @@ export default function App() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+const root = document.getElementById('root');
+ReactDOM.render(<App />, root);
