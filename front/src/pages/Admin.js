@@ -7,7 +7,7 @@ export default function Admin() {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
   
-    fetch(`http://localhost:3000/admin/api/questions-reponses`, {
+    fetch(`http://localhost:3000/api/questions-reponses`, {
       method: 'GET',
     }).then(data => {
       setQuestions(data.json().questions)
