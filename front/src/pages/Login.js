@@ -13,7 +13,9 @@ export default function Login() {
           password: password
        })
     }).then(data => {
-      if(data.json().message == "Identifiants incorrects coté back") {
+      console.log(data);
+      
+      if(data.json().message === "Identifiants incorrects coté back") {
         localStorage.setItem("username", username);
         localStorage.setItem("password", password);
         localStorage.setItem("user_connect", true); 
@@ -33,7 +35,6 @@ export default function Login() {
 
     try {
       sendLoginForm(mail, password);
-      alert("bravo c'est envoyé");
 
       setMail("");
       setPassword("");

@@ -10,6 +10,8 @@ export default function Admin() {
     fetch(`http://localhost:3000/api/questions-reponses`, {
       method: 'GET',
     }).then(data => {
+
+      console.log(data);
       setQuestions(data.json().questions)
     })
   }, []);
