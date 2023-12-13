@@ -49,6 +49,26 @@ mongoose
     console.log("Error connecting to MongoDB Atlas: ", error);
   });
 
+
+const checkAdminCredentials = (req, res, next) => {
+  const { username, password } = req.body;
+
+  // Vérifier les identifiants (admin/admin dans cet exemple)
+  if (username === "admin" && password === "admin") {
+    next(); // Identifiants corrects, continuer le traitement
+  } else {
+    res.status(401).json({ error: "Identifiants incorrects" });
+  }
+};
+
+// Route pour la page d'administration
+app.post("/admin", checkAdminCredentials, (req, res) => {
+  // Logique de la page d'administration ici
+  res.json({ message: "Bienvenue dans le tableau de bord admin" });
+});
+
+
+
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
   nom: { type: String, required: true },
@@ -84,6 +104,9 @@ app.post("/api/contact", async (req, res) => {
       .json({ error: "Erreur lors de l'enregistrement du contact" });
   }
 });
+
+
+
 
 // Modele big Form
 const ReponseSchema = new mongoose.Schema({
