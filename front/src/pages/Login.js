@@ -5,7 +5,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   function sendLoginForm(username, password) {
-    return fetch(`http://localhost:3000/admin`, {
+    return fetch(`http://localhost:3000/api/loginr`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -13,9 +13,12 @@ export default function Login() {
           password: password
        })
     }).then(data => {
-      data.json();
-      localStorage.setItem("username", username);
-      localStorage.setItem("password", password);
+      if(data.json().message == "Identifiants incorrects coté back") {
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", password);
+        localStorage.setItem("user_connect", true); 
+        window.location.href = "http://localhost:3001/admin";       
+      }
     })
   }
 
