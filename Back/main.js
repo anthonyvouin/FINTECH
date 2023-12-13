@@ -3,6 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
+import csv from "csv-express";
+
 
 const app = express();
 const port = 3000;
@@ -80,6 +82,30 @@ app.get("/api/questions-reponses", async (req, res) => {
       .json({
         error: "Erreur lors de la récupération des questions et réponses",
       });
+  }
+});
+
+app.get("/api/questions-reponses/csv", async (req, res) => {
+  try {
+    const questionsReponses = await Reponse.find();
+
+    // Définissez les en-têtes pour le format CSV
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=questions-reponses.csv"
+    );
+
+    // Utilisez csv-express pour envoyer les données au format CSV
+    res.csv(questionsReponses, true);
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des questions et réponses :",
+      error
+    );
+    res.status(500).json({
+      error: "Erreur lors de la récupération des questions et réponses",
+    });
   }
 });
 
