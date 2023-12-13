@@ -50,14 +50,29 @@ mongoose
   });
 
 
+
+// Middleware pour vérifier les identifiants de l'administrateur
 const checkAdminCredentials = (req, res, next) => {
   const { username, password } = req.body;
 
   // Vérifier les identifiants (admin/admin dans cet exemple)
   if (username === "admin" && password === "admin") {
+    req.isAdmin = true; // Ajouter une propriété isAdmin à la requête
     next(); // Identifiants corrects, continuer le traitement
   } else {
     res.status(401).json({ error: "Identifiants incorrects" });
+  }
+};
+
+// Middleware pour vérifier si l'utilisateur est connecté
+const checkUserAuthentication = (req, res, next) => {
+  // Ajoutez ici la logique pour vérifier l'authentification de l'utilisateur
+  // Vous pouvez utiliser des tokens JWT, des sessions, etc.
+  // Pour cet exemple, vérifions simplement si l'utilisateur est connecté
+  if (req.isAuthenticated) {
+    next(); // L'utilisateur est connecté, continuer le traitement
+  } else {
+    res.status(401).json({ error: "Utilisateur non authentifié" });
   }
 };
 
@@ -66,6 +81,21 @@ app.post("/admin", checkAdminCredentials, (req, res) => {
   // Logique de la page d'administration ici
   res.json({ message: "Bienvenue dans le tableau de bord admin" });
 });
+
+// Route pour afficher l'ensemble des questions et réponses (accessible aux administrateurs connectés)
+app.get("/admin/api/questions-reponses", checkAdminCredentials, checkUserAuthentication, async (req, res) => {
+  try {
+    // Ajoutez ici la logique pour récupérer l'ensemble des questions et réponses depuis la base de données
+    // Utilisez le modèle Reponse défini précédemment
+    const questionsReponses = await Reponse.find();
+
+    res.json({ questionsReponses });
+  } catch (error) {
+    console.error("Erreur lors de la récupération des questions et réponses :", error);
+    res.status(500).json({ error: "Erreur lors de la récupération des questions et réponses" });
+  }
+});
+
 
 
 
