@@ -64,33 +64,24 @@ app.post("/api/login", (req, res) => {
   }
 });
 
-// Middleware pour vérifier si l'utilisateur est connecté
-const checkUserAuthentication = (req, res, next) => {
-  // Ajoutez ici la logique pour vérifier l'authentification de l'utilisateur
-  // Vous pouvez utiliser des tokens JWT, des sessions, etc.
-  // Pour cet exemple, vérifions simplement si l'utilisateur est connecté
-  if (req.isAuthenticated) {
-    next(); // L'utilisateur est connecté, continuer le traitement
-  } else {
-    res.status(401).json({ error: "Utilisateur non authentifié coté back" });
-  }
-};
 
-// Route pour récupérer l'ensemble des réponses (accessible aux utilisateurs connectés)
-app.get("/api/questions-reponses", checkUserAuthentication, async (req, res) => {
+app.get("/api/questions-reponses", async (req, res) => {
   try {
     // Logique pour récupérer l'ensemble des questions et réponses depuis la base de données
     const questionsReponses = await Reponse.find();
     res.json({ questionsReponses });
   } catch (error) {
-    console.error("Erreur lors de la récupération des questions et réponses :", error);
-    res.status(500).json({ error: "Erreur lors de la récupération des questions et réponses" });
+    console.error(
+      "Erreur lors de la récupération des questions et réponses :",
+      error
+    );
+    res
+      .status(500)
+      .json({
+        error: "Erreur lors de la récupération des questions et réponses",
+      });
   }
 });
-
-
-
-
 
 
 
