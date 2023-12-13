@@ -24,7 +24,7 @@ export default function Home() {
     }}>
       <div className="mx-auto max-w-[43rem]">
         <div className="text-center">
-          <p className="text-lg font-medium leading-8 text-indigo-600/95">Semaine FINTECH - Projet n°3</p>
+          <p className="text-lg font-medium leading-8 text-slate-50">Semaine FINTECH - Projet n°3</p>
           <h1 className="mt-3 text-[3.5rem] font-bold leading-[4rem] text-white">Tableau de bord du trader</h1>
           <p className="mt-3 text-lg text-slate-200">Pour rendre le trading plus accessible à un large public, nous avons repensé l'interface visuelle d'un tableau de bord en nous appuyant sur les retours des utilisateurs recueillis via notre formulaire de contact. L'objectif est de simplifier l'accès aux marchés financiers pour le plus grand nombre.</p>
         </div>

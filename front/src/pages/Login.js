@@ -5,7 +5,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   function sendLoginForm(username, password) {
-    return fetch(`http://localhost:3000/api/loginr`, {
+    return fetch(`http://localhost:3000/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
