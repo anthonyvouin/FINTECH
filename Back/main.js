@@ -51,18 +51,18 @@ mongoose
 
 
 
-// Middleware pour vérifier les identifiants de l'administrateur
-const checkAdminCredentials = (req, res, next) => {
+// Route pour se connecter
+app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
 
-  // Vérifier les identifiants (admin/admin dans cet exemple)
+  // Vérifier les identifiants (exemple: admin/admin)
   if (username === "admin" && password === "admin") {
-    req.isAdmin = true; // Ajouter une propriété isAdmin à la requête
-    next(); // Identifiants corrects, continuer le traitement
+    req.isAuthenticated = true; // Simuler l'authentification
+    res.json({ message: "Connexion réussie coté back" });
   } else {
-    res.status(401).json({ error: "Identifiants incorrects" });
+    res.status(401).json({ error: "Identifiants incorrects coté back" });
   }
-};
+});
 
 // Middleware pour vérifier si l'utilisateur est connecté
 const checkUserAuthentication = (req, res, next) => {
@@ -72,29 +72,24 @@ const checkUserAuthentication = (req, res, next) => {
   if (req.isAuthenticated) {
     next(); // L'utilisateur est connecté, continuer le traitement
   } else {
-    res.status(401).json({ error: "Utilisateur non authentifié" });
+    res.status(401).json({ error: "Utilisateur non authentifié coté back" });
   }
 };
 
-// Route pour la page d'administration
-app.post("/admin", checkAdminCredentials, (req, res) => {
-  // Logique de la page d'administration ici
-  res.json({ message: "Bienvenue dans le tableau de bord admin" });
-});
-
-// Route pour afficher l'ensemble des questions et réponses (accessible aux administrateurs connectés)
-app.get("/admin/api/questions-reponses", checkAdminCredentials, checkUserAuthentication, async (req, res) => {
+// Route pour récupérer l'ensemble des réponses (accessible aux utilisateurs connectés)
+app.get("/api/questions-reponses", checkUserAuthentication, async (req, res) => {
   try {
-    // Ajoutez ici la logique pour récupérer l'ensemble des questions et réponses depuis la base de données
-    // Utilisez le modèle Reponse défini précédemment
+    // Logique pour récupérer l'ensemble des questions et réponses depuis la base de données
     const questionsReponses = await Reponse.find();
-
     res.json({ questionsReponses });
   } catch (error) {
     console.error("Erreur lors de la récupération des questions et réponses :", error);
     res.status(500).json({ error: "Erreur lors de la récupération des questions et réponses" });
   }
 });
+
+
+
 
 
 
