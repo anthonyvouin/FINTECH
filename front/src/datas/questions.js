@@ -1,7 +1,7 @@
 import Profil_utilisateur from '../media/Profil_utilisateur.png';
 import Ergonomie from '../media/Ergonomie.png';
 import Graphiques_analyses_techniques from '../media/Graphiques_analyses_techniques.png';
-import Accessibilité from '../media/Accessibilité.png';
+import Accessibilité from '../media/Daltonisme-Ishiara-test.webp';
 import Actualités_financières from '../media/Actualités_financières.png';
 import Communaute_Trading from '../media/Communaute_Trading.png';
 import Navigation from '../media/Navigation.png';
@@ -38,9 +38,10 @@ export const questions = [
   {
     id:3, 
     image: Graphiques_analyses_techniques, 
+    type: "graphiques_game",
     title: "Graphiques et analyses techniques", 
     questions: {
-        q1: "Quelles informations trouvez-vous les plus utiles sur le tableau de bord ?",
+        q1: "Durant quel mis avez vous été le plus actif",
         q2: "Trouvez-vous utile la possibilité de comparer rapidement différents actifs financiers sur le tableau de bord ?"
     }
   },
@@ -58,7 +59,7 @@ export const questions = [
     image: Accessibilité, 
     title: "Accessibilité", 
     questions: {
-        q1: "Pouvez vous citez les couleurs qui s’affichent sur l’image ?",
+        q1: "Pouvez vous citez le chiffre qui s’affichent sur l’image ?",
         q2: "Y a-t-il des fonctionnalités spécifiques que vous aimeriez pouvoir ajuster selon vos préférences ? Notamment au niveau des couleurs utilisées pour la conception d’un tableau de bord ?"
     }
   },

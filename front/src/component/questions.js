@@ -31,7 +31,12 @@ const Questions = (props) => {
             );
 
             document.querySelector("#question_"+props.question.id).innerHTML = returnResponse();
-            localStorage.setItem("#question_"+props.question.id, true)
+            localStorage.setItem("question_"+props.question.id, true);
+
+            const next_theme = document.querySelector("#question_container_" + (props.question.id+1));
+            if(next_theme) {
+              next_theme.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+            }
         } catch (error) {
             alert("petit problème durant l'envoie de vos réponses");
         }
@@ -50,13 +55,13 @@ const Questions = (props) => {
     }
 
     return (
-        <div className={`grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 gap-2 xl:gap-0 lg:py-16 lg:grid-cols-12 ${props.question.id % 2 !== 0 ? "lg:flex-row-reverse lg:flex-wrap" : ""}`}>
+        <div id={"question_container_" + props.question.id} className={`h-screen grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 gap-2 xl:gap-0 lg:py-16 lg:grid-cols-12 ${props.question.id % 2 !== 0 ? "lg:flex-row-reverse lg:flex-wrap" : ""}`}>
           <div className={`mr-auto w-full place-self-center lg:col-span-6 ${props.question.id % 2 !== 0 ? "lg:order-2" : ""}`}>
             <img src={props.question.image} alt="" className="portfolio__img" />
           </div>
           <div id={"question_" + props.question.id} className={`lg:px-4 mr-auto w-full place-self-center lg:col-span-6 ${props.question.id % 2 !== 0 ? "lg:order-1" : ""}`}>
             <h1 className="max-w-2xl mb-4 text-xl font-extrabold leading-none ">{props.question.title}</h1>
-            {localStorage.getItem("#question_" + props.question.id) !== "true" ? (
+            {localStorage.getItem("question_" + props.question.id) !== "true" ? (
               <form action="#" className="" onSubmit={handleSubmit}>
                 <div className="">
                   <div className="mb-5">
@@ -95,7 +100,7 @@ const Questions = (props) => {
             ) : (
               <div className="grid gap-4 text-center">
                 <svg width="50" height="50" viewBox="0 0 114 114" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-max grid gap-4 m-auto">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M57 113.25C64.3869 113.25 71.7014 111.795 78.5259 108.968C85.3505 106.141 91.5515 101.998 96.7748 96.7748C101.998 91.5515 106.141 85.3505 108.968 78.5259C111.795 71.7014 113.25 64.3869 113.25 57C113.25 49.6131 111.795 42.2986 108.968 35.4741C106.141 28.6495 101.998 22.4485 96.7748 17.2252C91.5515 12.0019 85.3505 7.8586 78.5259 5.03178C71.7014 2.20495 64.3869 0.75 57 0.75C42.0816 0.75 27.7742 6.67632 17.2252 17.2252C6.67632 27.7742 0.75 42.0816 0.75 57C0.75 71.9184 6.67632 86.2258 17.2252 96.7748C27.7742 107.324 42.0816 113.25 57 113.25ZM55.55 79.75L86.8 42.25L77.2 34.25L50.325 66.4938L36.4187 52.5813L27.5813 61.4187L46.3313 80.1687L51.1688 85.0063L55.55 79.75Z" fill="black"/>
+                <path fillRule="evenodd" clipRule="evenodd" d="M57 113.25C64.3869 113.25 71.7014 111.795 78.5259 108.968C85.3505 106.141 91.5515 101.998 96.7748 96.7748C101.998 91.5515 106.141 85.3505 108.968 78.5259C111.795 71.7014 113.25 64.3869 113.25 57C113.25 49.6131 111.795 42.2986 108.968 35.4741C106.141 28.6495 101.998 22.4485 96.7748 17.2252C91.5515 12.0019 85.3505 7.8586 78.5259 5.03178C71.7014 2.20495 64.3869 0.75 57 0.75C42.0816 0.75 27.7742 6.67632 17.2252 17.2252C6.67632 27.7742 0.75 42.0816 0.75 57C0.75 71.9184 6.67632 86.2258 17.2252 96.7748C27.7742 107.324 42.0816 113.25 57 113.25ZM55.55 79.75L86.8 42.25L77.2 34.25L50.325 66.4938L36.4187 52.5813L27.5813 61.4187L46.3313 80.1687L51.1688 85.0063L55.55 79.75Z" fill="black"/>
                 </svg>
                 <p>Vos réponses ont bien été envoyées </p>
               </div>
