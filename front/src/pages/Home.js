@@ -47,9 +47,8 @@ export default function Home() {
     
     const questionsResponses = updatedResponses.map((response, index) => {
       const question = questions[index];
-      return { question: question.question, response:response };
+      return { question: question.question, response };
     });
-
 
     const reponse_tab = { reponses: questionsResponses };
     sendQuestionForm(reponse_tab);
