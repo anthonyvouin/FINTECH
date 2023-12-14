@@ -1,66 +1,42 @@
-import Profil_utilisateur from '../media/Profil_utilisateur.png';
-import Ergonomie from '../media/Ergonomie.png';
-import Graphiques_analyses_techniques from '../media/Graphiques_analyses_techniques.png';
-import Accessibilité from '../media/Daltonisme-Ishiara-test.webp';
-import Actualités_financières from '../media/Actualités_financières.png';
-import Communaute_Trading from '../media/Communaute_Trading.png';
-import Navigation from '../media/Navigation.png';
-
-
 export const questions = [
   {
     id:0,
-    question: "Quels sont vos objectifs commerciaux spécifiques ?",
-    type:"texte"
+    question: "Quels outils d'analyse technique trouvez-vous les plus utiles ?"
   },
   {
     id:1,
-    question: "Comment suivez-vous les événements macroéconomiques ?",
-    type:"texte"
-  },
+    question: "Existe-t-il des indicateurs spécifiques que vous aimeriez voir intégrés pour améliorer vos analyses ?"
+  },/*
   {
     id:2,
-    question: "Quels types d'actifs négociez-vous le plus fréquemment ?",
-    type:"texte"
+    question: "Dans quelle mesure aimeriez-vous pouvoir personnaliser l'apparence et la disposition de votre tableau de bord (exemple : fond noir ou blanc) ? Quels éléments souhaitez-vous ajuster selon vos préférences ?"
   },
   {
     id:3,
-    question: "Quelles informations trouvez-vous essentielles pour prendre des décisions commerciales informées ?",
-    type:"texte"
+    question: "Comment votre tableau de bord actuel prend-il en charge la gestion des risques? Y a-t-il des fonctionnalités spécifiques que vous aimeriez voir ajoutées pour renforcer cette dimension ?"
   },
   {
     id:4,
-    question: "Comment préférez-vous organiser les informations sur votre portefeuille ?",
-    type:"texte"
+    question: "À quel point la communication avec d'autres traders est-elle importante pour vous ?"
   },
   {
     id:5,
-    question: "Quels outils d'analyse technique utilisez-vous couramment ?",
-    type:"texte"
+    question: "Y a-t-il des moyens spécifiques d'améliorer la collaboration directement depuis votre tableau de bord ?"
   },
   {
     id:6,
-    question: "Comment gérez-vous actuellement les alertes et les notifications ?",
-    type:"texte"
+    question: "Aimeriez-vous avoir la possibilité d’utiliser de façon modulaire les différents éléments qui s'affichent sur le tableau de bord ?"
   },
   {
     id:7,
-    question: "Quelles sont vos préférences en termes de personnalisation de l'interface utilisateur ?",
-    type:"texte"
+    question: "En envisageant de moderniser votre expérience avec un tableau de bord, trouvez-vous pertinent d'utiliser des éléments modulaires interactifs, vous permettant de les déplacer et de les organiser selon vos préférences individuelles ?"
   },
   {
     id:8,
-    question: "Quels sont les challenges ou les lacunes que vous avez rencontrés avec les tableaux de bord actuels ?",
-    type:"texte"
+    question: "Si oui, quelles fonctionnalités spécifiques aimeriez-vous voir dans ces modules pour faciliter votre travail quotidien ?"
   },
   {
     id:9,
-    question: "Quels indicateurs de performance considérez-vous comme les plus importants ?",
-    type:"texte"
-  },
-  {
-    id:10,
-    question: "Comment gérez-vous les transactions sur plusieurs marchés ou classes d'actifs ?",
-    type:"texte"
-  },
+    question: "Lorsque vous êtes amené à être en déplacement professionnel, comment adaptez-vous votre environnement de travail pour retrouver facilement vos outils malgré le fait que vous n’ayez pas accès à tout instantanément dû au manque de matériel informatique comme les écrans ?"
+  }*/
 ];

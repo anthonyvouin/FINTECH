@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { questions } from "../datas/questions";
 import hero_image from "../media/office-workers-using-finance-graphs_23-2150408681.jpg";
@@ -47,7 +47,7 @@ export default function Home() {
     
     const questionsResponses = updatedResponses.map((response, index) => {
       const question = questions[index];
-      return { question: question.question, response };
+      return { question: question.question, response:response };
     });
 
 
@@ -57,6 +57,9 @@ export default function Home() {
     document.querySelectorAll(".questions_input").forEach((element) => {
       element.value = "";
     });
+
+
+    localStorage.setItem("form_complete", JSON.stringify(true));
   };
 
   function sendQuestionForm(questionsResponses) {
@@ -67,6 +70,18 @@ export default function Home() {
     }).then((data) => data.json());
   }
 
+  function formComplete() {
+    return `
+      <div class="flex flex-col items-center justify-center" >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
+        </svg>
+        <p class="my-3 text-2xl font-bold text-black text-center">Merci pour vos retours ♥</p>
+      </div>
+    `
+  }
+
+  
   return (
     <>
       <section
@@ -84,12 +99,7 @@ export default function Home() {
             Tableau de bord du trader
           </h1>
           <p className="mt-3 text-lg text-slate-200">
-            Afin de recueillir les besoins utilisateurs et mieux les comprendre,
-            nous avons d’abord sélectionné les critères qui reviennent à chaque
-            analyse de tableau de bord actuels. Par conséquent, nous avons posé
-            une question qui couvre au moins un de ces critères. Le but de ce
-            questionnaire est d’avoir un feedback qui englobe les critères
-            essentiels dans un dashboard trading.
+          Pour rendre le trading plus ergonomique pour les professionnels, nous avons repensé l'interface visuel d'un tableau de bord en nous appuyant sur les retours des utilisateurs recueillis via notre formulaire de contact. L'objectif est d’adapter les tableaux de bord de façon à les rendre plus modulabes et personnalisables
           </p>
           <div className="mt-6 flex items-center justify-center gap-4">
             <button
@@ -108,7 +118,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section ref={ref} className="bg-white p-16">
+      <section ref={ref} className="bg-white p-16" id="question_container">
+
+      {localStorage.getItem('form_complete') !== "true" ? 
+      (
+        <>
         <h1 className="my-3 text-2xl font-bold text-black text-center">
           Tableau de bord du trader
         </h1>
@@ -174,6 +188,17 @@ export default function Home() {
         </div>
 
         </form>
+        </>
+      ) : (
+        <div className="flex flex-col items-center justify-center">
+          <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
+          </svg>
+          <p className="my-3 text-2xl font-bold text-black text-center">Merci pour vos retours ♥</p>
+        </div>
+      )
+      }
+
       </section>
     </>
   );
