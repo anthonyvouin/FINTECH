@@ -1,6 +1,6 @@
+// Admin.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 
 export default function Admin() {
   const [questions, setQuestions] = useState([]);
@@ -56,6 +56,22 @@ export default function Admin() {
     }
   };
 
+  const downloadJSON = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/questions-reponses/json"
+      );
+      const blob = await response.blob();
+
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = "questions-reponses.json";
+      link.click();
+    } catch (error) {
+      console.error("Erreur lors du téléchargement du JSON :", error);
+    }
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl text-center font-bold mb-4">DashBoard Admin</h1>
@@ -70,10 +86,18 @@ export default function Admin() {
 
         {/* Bouton pour télécharger les données au format PDF */}
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="bg-green-500 text-white px-4 py-2 rounded mr-4"
           onClick={downloadPDF}
         >
           Télécharger PDF
+        </button>
+
+        {/* Bouton pour télécharger les données au format JSON */}
+        <button
+          className="bg-yellow-500 text-white px-4 py-2 rounded"
+          onClick={downloadJSON}
+        >
+          Télécharger JSON
         </button>
 
         <Link to="/ContactInfo" className="ml-4 text-blue-500 hover:underline">

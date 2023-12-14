@@ -5,9 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import csv from "csv-express";
 import PDFDocument from "pdfkit";
-import { open } from "sqlite";
-import sqlite3 from "sqlite3";
-import path from "path";
+import { Parser } from "json2csv";
 
 
 
@@ -163,7 +161,28 @@ app.get("/api/questions-reponses/pdf", async (req, res) => {
   }
 });
 
+app.get('/api/questions-reponses/json', async (req, res) => {
+  try {
+    const questionsReponses = await Reponse.find();
 
+    // Définissez les en-têtes pour le format JSON
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=questions-reponses.json'
+    );
+
+    // Envoyez les données au format JSON
+    res.send(JSON.stringify(questionsReponses, null, 2));
+  } catch (error) {
+    console.error('Erreur lors de la récupération des questions et réponses :', error);
+    res.status(500).json({
+      error: 'Erreur lors de la récupération des questions et réponses',
+    });
+  }
+});
+
+// ...
 
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
