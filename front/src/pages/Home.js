@@ -44,8 +44,9 @@ export default function Home() {
       element.value = "";
     });
 
+    const reponse_tab = {"reponses": questionsResponses}
     // Envoi des données au backend
-    sendQuestionForm(questionsResponses);
+    sendQuestionForm(reponse_tab);
   };
 
   function sendQuestionForm(questionsResponses) {
