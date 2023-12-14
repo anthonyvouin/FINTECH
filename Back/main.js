@@ -133,7 +133,7 @@ app.get("/api/questions-reponses/pdf", async (req, res) => {
     // Ajoutez le contenu du PDF à partir des questions et réponses
     questionsReponses.forEach((question, index) => {
       const sondageNumber = index + 1;
-      pdfDoc.font("Helvetica-Bold").fontSize(12).text(`Sondage ${sondageNumber}:`);
+      pdfDoc.font("Helvetica-Bold").fontSize(12).text(`Enquete numéro ${sondageNumber}:`);
 
       // Affichez toutes les réponses associées à chaque question
       question.reponses.forEach((reponse, subIndex) => {
