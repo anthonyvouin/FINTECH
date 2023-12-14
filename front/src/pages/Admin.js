@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 
 export default function Admin() {
   const [questions, setQuestions] = useState([]);
@@ -73,6 +75,10 @@ export default function Admin() {
         >
           Télécharger PDF
         </button>
+
+        <Link to="/ContactInfo" className="ml-4 text-blue-500 hover:underline">
+          Voir les informations de contact
+        </Link>
       </div>
 
       {/* Afficher le contenu des questions ici */}

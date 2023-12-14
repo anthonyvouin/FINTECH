@@ -200,6 +200,18 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// get contact
+app.get("/api/contact", async (req, res) => {
+  try {
+    const contacts = await Contact.find();
+    res.json({ contacts });
+  } catch (error) {
+    console.error("Erreur lors de la récupération des contacts :", error);
+    res
+      .status(500)
+      .json({ error: "Erreur lors de la récupération des contacts" });
+  }
+});
 
 
 // Modele big Form
