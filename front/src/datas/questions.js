@@ -6,7 +6,7 @@ export const questions = [
   {
     id:1,
     question: "Existe-t-il des indicateurs spécifiques que vous aimeriez voir intégrés pour améliorer vos analyses ?"
-  },/*
+  },
   {
     id:2,
     question: "Dans quelle mesure aimeriez-vous pouvoir personnaliser l'apparence et la disposition de votre tableau de bord (exemple : fond noir ou blanc) ? Quels éléments souhaitez-vous ajuster selon vos préférences ?"
@@ -38,5 +38,5 @@ export const questions = [
   {
     id:9,
     question: "Lorsque vous êtes amené à être en déplacement professionnel, comment adaptez-vous votre environnement de travail pour retrouver facilement vos outils malgré le fait que vous n’ayez pas accès à tout instantanément dû au manque de matériel informatique comme les écrans ?"
-  }*/
+  }
 ];
