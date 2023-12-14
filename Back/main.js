@@ -6,6 +6,8 @@ import mongoose from "mongoose";
 import csv from "csv-express";
 import PDFDocument from "pdfkit";
 import { Parser } from "json2csv";
+import xmlbuilder from "xmlbuilder";
+
 
 
 
@@ -183,6 +185,36 @@ app.get('/api/questions-reponses/json', async (req, res) => {
 });
 
 // ...
+app.get("/api/questions-reponses/xml", async (req, res) => {
+  try {
+    const questionsReponses = await Reponse.find();
+
+    // Utilisez xmlbuilder pour générer le XML
+    const xml = xmlbuilder.create("questionsReponses");
+
+    questionsReponses.forEach((question, index) => {
+      const sondageNumber = index + 1;
+      const enquete = xml.ele("enquete", { numero: sondageNumber });
+
+      question.reponses.forEach((reponse, subIndex) => {
+        enquete.ele("reponse", { question: reponse.question }, reponse.reponse);
+      });
+    });
+
+    // Envoyez le XML en réponse
+    res.set("Content-Type", "application/xml");
+    res.send(xml.end({ pretty: true }));
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des questions et réponses :",
+      error
+    );
+    res.status(500).json({
+      error: "Erreur lors de la récupération des questions et réponses",
+    });
+  }
+});
+
 
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
