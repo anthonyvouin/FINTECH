@@ -129,6 +129,7 @@ export default function Home() {
               setShowError(false); // Cacher le message d'erreur dès que l'utilisateur commence à saisir quelque chose
             }}
             required
+            value={inputValue}
             className="questions_input block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500"
           />
           {inputValue.trim() === '' && (
