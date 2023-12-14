@@ -14,7 +14,15 @@ export default function Home() {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    try {
+
+    } catch (error) {
+        alert("petit problème durant l'envoie de vos réponses");
+    }
+}
   return (
     <>
       
@@ -26,7 +34,7 @@ export default function Home() {
         <div className="text-center">
           <p className="text-lg font-medium leading-8 text-slate-50">Semaine FINTECH - Projet n°3</p>
           <h1 className="mt-3 text-[3.5rem] font-bold leading-[4rem] text-white">Tableau de bord du trader</h1>
-          <p className="mt-3 text-lg text-slate-200">Pour rendre le trading plus accessible à un large public, nous avons repensé l'interface visuelle d'un tableau de bord en nous appuyant sur les retours des utilisateurs recueillis via notre formulaire de contact. L'objectif est de simplifier l'accès aux marchés financiers pour le plus grand nombre.</p>
+          <p className="mt-3 text-lg text-slate-200">Afin de recueuillir les besoins utilisateurs et mieux les comprendre, nous avons d’abord séléctionné  les critères qui reviennent à chaque analyse de tableau de bord actuels. Par conséquent, nous avons posé une question qui couvre au moins un de ces critères.  Le but de ce questionnaire et d’avoir un feedback qui englobe  les critères essentiels dans un dashbord trading. </p>
         </div>
 
         <div className="mt-6 flex items-center justify-center gap-4">
@@ -41,9 +49,13 @@ export default function Home() {
       </div>
     </section>
 
-    <section ref={ref} className="bg-white py-16">
+    <section ref={ref} className="bg-white p-16">
       <h1 className="my-3 text-[2rem] font-bold text-black text-center">Tableau de bord du trader</h1>
+
+      <form action="#" className="" onSubmit={handleSubmit}>
       {
+      
+      /*
       questions.map((question, index) =>
         question.type && question.type === "graphiques_game" ? (
           <QuestionsGraphique key={index} question={question} />
@@ -51,7 +63,28 @@ export default function Home() {
           <Questions key={index} question={question} />
         )
       )
+      */
+
+        questions.map((question, index) => {
+          return (
+            <div key={index} class="mb-5">
+              <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 ">
+                {question.question}
+              </label>
+              <input type="text" id="large-input" 
+              class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+          );
+        })
+
       }
+
+
+        <button type="submit"
+          className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Envoyer
+        </button>
+      </form>
     </section>
     </>
   )
