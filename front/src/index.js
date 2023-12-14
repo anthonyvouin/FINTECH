@@ -5,6 +5,7 @@ import './index.css';
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
+import ContactInfo from "./pages/ContactInfo";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import NoPage from "./pages/NoPage";
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Login />} />
           {userConnected ? <Route path="admin" element={<Admin />} /> : null}
+          {userConnected ? <Route path="contactinfo" element={<ContactInfo />} /> : null}
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
