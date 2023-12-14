@@ -51,7 +51,7 @@ export default function Home() {
     });
 
     console.log("----------------------");
-    const reponse_tab = { questions: questionsResponses };
+    const reponse_tab = { reponses: questionsResponses };
     console.log(reponse_tab);
     sendQuestionForm(reponse_tab);
     
