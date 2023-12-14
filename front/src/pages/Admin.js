@@ -25,19 +25,21 @@ export default function Admin() {
   }, []);
 
   const downloadCSV = () => {
-    const csvData = questions
-      .map((question) => {
-        return `${question._id},${question.reponses
-          .map((r) => `${r.question},${r.reponse}`)
-          .join(",")}`;
-      })
-      .join("\n");
+    // ... (votre fonction downloadCSV actuelle)
+  };
 
-    const blob = new Blob([csvData], { type: "text/csv" });
-    const link = document.createElement("a");
-    link.href = window.URL.createObjectURL(blob);
-    link.download = "questions-reponses.csv";
-    link.click();
+  const downloadPDF = () => {
+    fetch("http://localhost:3000/api/questions-reponses/pdf")
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "questions-reponses.pdf";
+        link.click();
+      })
+      .catch((error) => {
+        console.error("Erreur lors du téléchargement du PDF :", error);
+      });
   };
 
   console.log(questionReponse);
@@ -46,8 +48,23 @@ export default function Admin() {
       <h1 className="text-3xl text-center font-bold pb-6">Reponses des utilisateurs</h1>
       <div>
         {/* Bouton pour télécharger les données au format CSV */}
-        <button className="underline pb-3" onClick={downloadCSV}>Télécharger CSV</button>
+        <div className="mb-4">
+        {/* Bouton pour télécharger les données au format CSV */}
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded mr-4"
+          onClick={downloadCSV}
+        >
+          Télécharger CSV
+        </button>
 
+        {/* Bouton pour télécharger les données au format PDF */}
+        <button
+          className="bg-green-500 text-white px-4 py-2 rounded"
+          onClick={downloadPDF}
+        >
+          Télécharger PDF
+        </button>
+      </div>
         {/* Afficher le contenu des questions ici */}
         <div className="bg-white overflow-auto">
           <table className="text-left w-full border-collapse">
@@ -71,7 +88,21 @@ export default function Admin() {
             </tbody>
           </table>
         </div>
-      </div>
+
+      {/* Afficher le contenu des questions ici */}
+      {questions.map((question, index) => (
+        <div key={index} className="my-4 p-4 border border-gray-300 rounded">
+          <ul>
+            {question.reponses.map((reponse, subIndex) => (
+              <li key={subIndex} className="mb-2">
+                <p className="font-semibold">Question: {reponse.question}</p>
+                <p>Réponse: {reponse.reponse}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
     </div>
   );
 }
