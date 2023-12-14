@@ -5,6 +5,9 @@ import cors from "cors";
 import mongoose from "mongoose";
 import csv from "csv-express";
 import PDFDocument from "pdfkit";
+import { open } from "sqlite";
+import sqlite3 from "sqlite3";
+import path from "path";
 
 
 
@@ -160,9 +163,7 @@ app.get("/api/questions-reponses/pdf", async (req, res) => {
   }
 });
 
-// ...
 
-// ...
 
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
@@ -173,7 +174,6 @@ const ContactSchema = new mongoose.Schema({
 });
 
 const Contact = mongoose.model("Contact", ContactSchema);
-
 // Route POST pour le formulaire de contact
 app.post("/api/contact", async (req, res) => {
   try {
@@ -199,7 +199,6 @@ app.post("/api/contact", async (req, res) => {
       .json({ error: "Erreur lors de l'enregistrement du contact" });
   }
 });
-
 
 
 
