@@ -5,9 +5,9 @@ import cors from "cors";
 import mongoose from "mongoose";
 import csv from "csv-express";
 import PDFDocument from "pdfkit";
-import { open } from "sqlite";
-import sqlite3 from "sqlite3";
-import path from "path";
+import { Parser } from "json2csv";
+import xmlbuilder from "xmlbuilder";
+
 
 
 
@@ -163,6 +163,57 @@ app.get("/api/questions-reponses/pdf", async (req, res) => {
   }
 });
 
+app.get('/api/questions-reponses/json', async (req, res) => {
+  try {
+    const questionsReponses = await Reponse.find();
+
+    // Définissez les en-têtes pour le format JSON
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=questions-reponses.json'
+    );
+
+    // Envoyez les données au format JSON
+    res.send(JSON.stringify(questionsReponses, null, 2));
+  } catch (error) {
+    console.error('Erreur lors de la récupération des questions et réponses :', error);
+    res.status(500).json({
+      error: 'Erreur lors de la récupération des questions et réponses',
+    });
+  }
+});
+
+// ...
+app.get("/api/questions-reponses/xml", async (req, res) => {
+  try {
+    const questionsReponses = await Reponse.find();
+
+    // Utilisez xmlbuilder pour générer le XML
+    const xml = xmlbuilder.create("questionsReponses");
+
+    questionsReponses.forEach((question, index) => {
+      const sondageNumber = index + 1;
+      const enquete = xml.ele("enquete", { numero: sondageNumber });
+
+      question.reponses.forEach((reponse, subIndex) => {
+        enquete.ele("reponse", { question: reponse.question }, reponse.reponse);
+      });
+    });
+
+    // Envoyez le XML en réponse
+    res.set("Content-Type", "application/xml");
+    res.send(xml.end({ pretty: true }));
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des questions et réponses :",
+      error
+    );
+    res.status(500).json({
+      error: "Erreur lors de la récupération des questions et réponses",
+    });
+  }
+});
 
 
 // Création d'un modèle Mongoose pour le formulaire de contacts
@@ -200,6 +251,18 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// get contact
+app.get("/api/contact", async (req, res) => {
+  try {
+    const contacts = await Contact.find();
+    res.json({ contacts });
+  } catch (error) {
+    console.error("Erreur lors de la récupération des contacts :", error);
+    res
+      .status(500)
+      .json({ error: "Erreur lors de la récupération des contacts" });
+  }
+});
 
 
 // Modele big Form
