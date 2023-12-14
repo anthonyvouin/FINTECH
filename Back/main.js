@@ -88,6 +88,7 @@ app.get("/api/questions-reponses", async (req, res) => {
   }
 });
 
+// Route pour obtenir toutes les questions et réponses au format CSV
 app.get("/api/questions-reponses/csv", async (req, res) => {
   try {
     const questionsReponses = await Reponse.find();
@@ -99,19 +100,28 @@ app.get("/api/questions-reponses/csv", async (req, res) => {
       "attachment; filename=questions-reponses.csv"
     );
 
+    // Créez le contenu CSV avec toutes les réponses associées à chaque question
+    const csvData = questionsReponses
+      .map((question, index) => {
+        return question.reponses
+          .map((reponse) => `${reponse.question},${reponse.reponse}`)
+          .join("\n");
+      })
+      .join("\n");
+
     // Utilisez csv-express pour envoyer les données au format CSV
-    res.csv(questionsReponses, true);
+    res.send(csvData);
   } catch (error) {
-    console.error(
-      "Erreur lors de la récupération des questions et réponses :",
-      error
-    );
+    console.error("Erreur lors de la récupération des questions et réponses :", error);
     res.status(500).json({
       error: "Erreur lors de la récupération des questions et réponses",
     });
   }
 });
 
+// ...
+
+// Route pour obtenir toutes les questions et réponses au format PDF
 app.get("/api/questions-reponses/pdf", async (req, res) => {
   try {
     const questionsReponses = await Reponse.find();
@@ -122,14 +132,14 @@ app.get("/api/questions-reponses/pdf", async (req, res) => {
 
     // Ajoutez le contenu du PDF à partir des questions et réponses
     questionsReponses.forEach((question, index) => {
-      pdfDoc
-        .font("Helvetica-Bold")
-        .fontSize(12)
-        .text(`Question ${index + 1}: ${question.reponses[0].question}`);
-      pdfDoc
-        .font("Helvetica")
-        .fontSize(10)
-        .text(`Réponse: ${question.reponses[0].reponse}`);
+      const sondageNumber = index + 1;
+      pdfDoc.font("Helvetica-Bold").fontSize(12).text(`Sondage ${sondageNumber}:`);
+
+      // Affichez toutes les réponses associées à chaque question
+      question.reponses.forEach((reponse, subIndex) => {
+        pdfDoc.font("Helvetica").fontSize(10).text(`  - ${reponse.question}: ${reponse.reponse}`);
+      });
+
       pdfDoc.moveDown();
     });
 
@@ -150,6 +160,9 @@ app.get("/api/questions-reponses/pdf", async (req, res) => {
   }
 });
 
+// ...
+
+// ...
 
 // Création d'un modèle Mongoose pour le formulaire de contacts
 const ContactSchema = new mongoose.Schema({
