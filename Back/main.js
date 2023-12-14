@@ -4,6 +4,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import csv from "csv-express";
+import PDFDocument from "pdfkit";
+
 
 
 const app = express();
@@ -66,6 +68,7 @@ app.post("/api/login", (req, res) => {
   }
 });
 
+// Api question et pdf
 
 app.get("/api/questions-reponses", async (req, res) => {
   try {
@@ -109,6 +112,43 @@ app.get("/api/questions-reponses/csv", async (req, res) => {
   }
 });
 
+app.get("/api/questions-reponses/pdf", async (req, res) => {
+  try {
+    const questionsReponses = await Reponse.find();
+
+    // Créez un nouveau document PDF
+    const pdfDoc = new PDFDocument();
+    pdfDoc.pipe(res);
+
+    // Ajoutez le contenu du PDF à partir des questions et réponses
+    questionsReponses.forEach((question, index) => {
+      pdfDoc
+        .font("Helvetica-Bold")
+        .fontSize(12)
+        .text(`Question ${index + 1}: ${question.reponses[0].question}`);
+      pdfDoc
+        .font("Helvetica")
+        .fontSize(10)
+        .text(`Réponse: ${question.reponses[0].reponse}`);
+      pdfDoc.moveDown();
+    });
+
+    // Finalisez le PDF et envoyez-le en réponse
+    pdfDoc.end();
+
+    // Définissez les en-têtes pour le format PDF
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=questions-reponses.pdf"
+    );
+  } catch (error) {
+    console.error("Erreur lors de la génération du PDF :", error);
+    res.status(500).json({
+      error: "Erreur lors de la génération du PDF",
+    });
+  }
+});
 
 
 // Création d'un modèle Mongoose pour le formulaire de contacts
